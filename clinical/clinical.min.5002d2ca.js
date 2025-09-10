@@ -20696,16 +20696,29 @@ angular.module('bahmni.clinical')
                 });
                 return forms;
             };
-
+            //Addition of form filters taking into account gender and age
             $scope.gender = $scope.patient.gender;
-            
+            $scope.age = $scope.patient.age;
             $scope.MCHForms = [
                 "Nursery Register",
                 "Gynaecology Register",
                 "PNC, Register",
                 "Cervical Cancer Screening Register",
                 "ANC Program",
-                "Labour and Delivery Register"
+                "Labour and Delivery Register",
+                "Family Planning Register",
+                "HPV REGISTER"
+            ],
+            $scope.maleForms = [
+                "VMMC - Follow Up",
+                "VMMC - Intake"
+            ],
+            $scope.underFive_form = [
+                "Under5"
+            ],
+           $scope.HEI_Forms = [
+                "Exposed Infant Monitoring",
+                "HIV Exposed Infant Register"
             ]
             // Form Code :: End
             init();
