@@ -15,8 +15,12 @@
                                     </div>
                                 </div>
                                 <ul class="template-icons">
-                                    <li ng-repeat="template in filterTemplates()" ng-show="gender == 'F' || !(MCHForms.includes(template.label))">
-                                        <!-- Show form if patient gender if female or the form is not part of the female MCH forms -->
+<                                    li ng-repeat="template in filterTemplates()"
+                                        ng-show="!(MCHForms.includes(template.label) && !(age > 8 && gender == 'F')) &&
+                                                !(underFive_form.includes(template.label) && !(age < 5)) && 
+                                                !(HEI_Forms.includes(template.label) && !(age < 2)) &&
+                                                !(maleForms.includes(template.label) && !(gender == 'M'))">
+                                            <!-- Show relevant form depending on patient gender and age -->
                                             <button id="{{getNormalized(template.label)}}" ng-disabled="((template.isAdded || template.alwaysShow) && !template.allowAddMore)" ng-click="addTemplate(template)">
                                                 {{::template.label}}
                                             </button>
@@ -31,4 +35,5 @@
     </div>
     <concept-set-group patient="::patient" consultation="consultation" observations="consultation.observations" all-templates="consultation.selectedObsTemplate" context="context" auto-scroll-enabled="::scrollingEnabled" ng-if="allTemplates.length > 0">
     </concept-set-group>
+
 </div>
